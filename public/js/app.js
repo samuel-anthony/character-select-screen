@@ -49534,6 +49534,7 @@ $(document).keydown(function (event) {
 });
 
 function movePlayerOne(val1) {
+  $('#' + p1).removeClass('kontol memek');
   $.ajax({
     url: '/pressKey/' + p1 + '/' + val1,
     success: function success(data) {
@@ -49546,11 +49547,13 @@ function movePlayerOne(val1) {
       $("#p1Gen").show("slide", {
         direction: "right"
       }, 100);
+      $('#' + p1).addClass('kontol memek');
     }
   });
 }
 
 function movePlayerTwo(val1) {
+  $('#' + p2).removeClass('kontol memek');
   $.ajax({
     url: '/pressKey/' + p2 + '/' + val1,
     success: function success(data) {
@@ -49563,6 +49566,7 @@ function movePlayerTwo(val1) {
       $("#p2Gen").show("slide", {
         direction: "left"
       }, 100);
+      $('#' + p2).addClass('kontol memek');
     }
   });
 }
@@ -49587,8 +49591,8 @@ function movePlayerTwo(val1) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\project\laravel\project1\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\project\laravel\project1\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\project\laravel\farewellProject\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\project\laravel\farewellProject\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
