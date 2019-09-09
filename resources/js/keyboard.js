@@ -56,7 +56,7 @@
     }
   });
 function movePlayerOne(val1){
-  $().removeClass('memek');
+  $('#'+p1).removeClass('memek');
   $.ajax({
     url: '/pressKey/'+p1+'/'+val1,
     success:function(data) {
