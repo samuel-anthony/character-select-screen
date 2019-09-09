@@ -56,7 +56,7 @@
     }
   });
 function movePlayerOne(val1){
-  $('#'+p1).removeClass('kontol memek');
+  $().removeClass('memek');
   $.ajax({
     url: '/pressKey/'+p1+'/'+val1,
     success:function(data) {
@@ -65,13 +65,13 @@ function movePlayerOne(val1){
         $("#p1Pic").attr("src",data.playerImage);
         $("#p1Name").html(data.playerName);
         $("#p1Gen").show("slide", { direction: "right"}, 100);
-        $('#'+p1).addClass('kontol memek');
+        $('#'+p1).addClass( memek');
       }
   });
 }
 
 function movePlayerTwo(val1){
-  $('#'+p2).removeClass('kontol memek');
+  $('#'+p2).removeClass('memek');
   $.ajax({
     url: '/pressKey/'+p2+'/'+val1,
     success:function(data) {
@@ -80,7 +80,7 @@ function movePlayerTwo(val1){
         $("#p2Pic").attr("src",data.playerImage);
         $("#p2Name").html(data.playerName);
         $("#p2Gen").show("slide", { direction: "left"}, 100);
-        $('#'+p2).addClass('kontol memek');
+        $('#'+p2).addClass('memek');
       }
   });
 }

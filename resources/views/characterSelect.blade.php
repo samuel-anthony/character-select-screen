@@ -41,18 +41,18 @@
         <div class="container flex-wrap my-flex-container">
             <div class="d-flex flex-row justify-content-between">
               <div class="my-flex-item" id="p1Gen">
-                <img src="/storage/big/{{$allUser[0]->profileImage}}.jpg" width="300px" alt="" id="p1Pic">
+                <img src="/storage/big/{{$allUser[0]['profileImage']}}.jpg" width="300px" alt="" id="p1Pic">
                 <div class="user-name" id="p1Name">
-                  {{$allUser[0]->name}}
+                  {{$allUser[0]['name']}}
                 </div>
               </div>
               <div class="d-flex flex-column justify-content-center">
                 <img src="{{ URL::to('/storage/vs.png') }}" width="200px" alt="">
               </div>
               <div class="my-flex-item" id="p2Gen">
-                <img src="/storage/big/{{$allUser[0]->profileImage}}.jpg" width="300px" alt="" id="p2Pic">
+                <img src="/storage/big/{{$allUser[0]['profileImage']}}.jpg" width="300px" alt="" id="p2Pic">
                 <div class="user-name" id="p2Name">
-                  {{$allUser[0]->name}}
+                  {{$allUser[0]['name']}}
                 </div>
               </div>
             </div>
@@ -62,7 +62,7 @@
                 <div class="d-flex flex-row justify-content-center">
               @endif
                 <div id="{{$counter+1}}" class="p-1">
-                  <img src="/storage/small/{{$allUser[$counter]->profileImage}}.jpg" width="90px" alt="">
+                  <img src="/storage/small/{{$allUser[$counter]['profileImage']}}.jpg" width="90px" alt="">
                 </div>
               @if(($counter+1)%10==0||($counter+1)==count($allUser))
                 </div>

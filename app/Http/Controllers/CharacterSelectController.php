@@ -10,13 +10,19 @@ class CharacterSelectController extends Controller
 {
   public function index()
   {
-      $allUser = profile::all();
-      for($a = 0; $a < count($allUser) ; $a++){
+      //$allUser = profile::all();
+      $jsonString = file_get_contents(base_path('storage/dataAnak.json'));
+      $allUser = json_decode($jsonString, true);
+
+      //$newJsonString = json_encode($allUser, JSON_PRETTY_PRINT);
+
+      //file_put_contents(base_path('storage/dataAnak.json'), stripslashes($newJsonString));
+      /*for($a = 0; $a < count($allUser) ; $a++){
         $image = Image::make(public_path("storage/big/{$allUser[$a]->profileImage}.jpg"))->fit(300,500);
         $image->save();
         $image = Image::make(public_path("storage/small/{$allUser[$a]->profileImage}.jpg"))->fit(300,300);
         $image->save();
-      }
+      }*/
       return view('characterSelect',[
         'allUser' => $allUser,
       ]);
