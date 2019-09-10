@@ -49485,18 +49485,26 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var p1 = 1,
-    p2 = 1,
+var p1 = 0,
+    p2 = 0,
     is_p1 = false,
-    is_p2 = false;
+    is_p2 = false,
+    allUser = 30;
+var stopper = 50,
+    timer;
+$(document).ready(function () {
+  hoverCharacterPointer();
+});
 $(document).keydown(function (event) {
   if (event.keyCode == '37') {
+    //left
     if (!is_p1) {
       movePlayerOne(-1);
     } else if (!is_p2) {
       movePlayerTwo(-1);
     }
   } else if (event.keyCode == '38') {
+    //up
     if (!is_p1) {
       movePlayerOne(-10);
     } else if (!is_p2) {
@@ -49530,46 +49538,80 @@ $(document).keydown(function (event) {
     } else if (is_p1) {
       is_p1 = false;
     }
+  } else if (event.keyCode == '82') {
+    //random, when r is pressed
+    if (!is_p1) {
+      timer = setInterval(randomPlayerOne, stopper);
+    } else if (!is_p2) {
+      timer = setInterval(randomPlayerTwo, stopper);
+    }
   }
 });
 
 function movePlayerOne(val1) {
-  $('#' + p1).removeClass('kontol memek');
   $.ajax({
     url: '/pressKey/' + p1 + '/' + val1,
     success: function success(data) {
       p1 = data.newValue;
-      $("#p1Gen").hide("slide", {
-        direction: "left"
-      }, 100);
       $("#p1Pic").attr("src", data.playerImage);
       $("#p1Name").html(data.playerName);
-      $("#p1Gen").show("slide", {
-        direction: "right"
-      }, 100);
-      $('#' + p1).addClass('kontol memek');
+      hoverCharacterPointer();
     }
   });
 }
 
 function movePlayerTwo(val1) {
-  $('#' + p2).removeClass('kontol memek');
   $.ajax({
     url: '/pressKey/' + p2 + '/' + val1,
     success: function success(data) {
       p2 = data.newValue;
-      $("#p2Gen").hide("slide", {
-        direction: "right"
-      }, 100);
       $("#p2Pic").attr("src", data.playerImage);
       $("#p2Name").html(data.playerName);
-      $("#p2Gen").show("slide", {
-        direction: "left"
-      }, 100);
-      $('#' + p2).addClass('kontol memek');
+      hoverCharacterPointer();
     }
   });
 }
+
+function hoverCharacterPointer() {
+  for (var c = 0; c < allUser; c++) {
+    $('#' + c).removeClass('selectedRed');
+    $('#' + p1).addClass('selectedRed');
+    $('#' + p2).addClass('selectedRed');
+  }
+}
+
+function randomPlayerOne() {
+  stopper += 10;
+  var rand = Math.floor(Math.random() * 29);
+  p1 = rand;
+  hoverCharacterPointer();
+  clearInterval(timer);
+
+  if (stopper < 300) {
+    timer = setInterval(randomPlayerOne, stopper);
+  } else {
+    is_p1 = true;
+    stopper = 50;
+  }
+}
+
+function randomPlayerTwo() {
+  stopper += 10;
+  var rand = Math.floor(Math.random() * 29);
+  p2 = rand;
+  hoverCharacterPointer();
+  clearInterval(timer);
+
+  if (stopper < 300) {
+    timer = setInterval(randomPlayerTwo, stopper);
+    alert(p2);
+  } else {
+    is_p2 = true;
+    stopper = 50;
+  }
+}
+
+function loadImage() {}
 
 /***/ }),
 

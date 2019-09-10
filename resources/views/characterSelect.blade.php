@@ -32,7 +32,7 @@
             text-align: center;
           }
 
-          .memek {
+          .selectedRed {
             background-color: red;
           }
         </style>
@@ -61,7 +61,7 @@
               @if($counter%10==0)
                 <div class="d-flex flex-row justify-content-center">
               @endif
-                <div id="{{$counter+1}}" class="p-1">
+                <div id="{{$counter}}" class="p-1">
                   <img src="/storage/small/{{$allUser[$counter]['profileImage']}}.jpg" width="90px" alt="">
                 </div>
               @if(($counter+1)%10==0||($counter+1)==count($allUser))
