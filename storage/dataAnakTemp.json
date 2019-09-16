@@ -141,72 +141,58 @@
     },
     {
         "id": 21,
-        "name": "Random",
-        "profileImage": "Random",
-        "created_at": "2019-09-08 12:19:24",
-        "updated_at": "2019-09-08 12:29:02"
-    },
-    {
-        "id": 22,
         "name": "FikriMu",
         "profileImage": "FikriMu",
         "created_at": "2019-09-08 03:44:09",
         "updated_at": "2019-09-08 03:44:09"
     },
     {
-        "id": 23,
+        "id": 22,
         "name": "Dj",
         "profileImage": "Dj",
         "created_at": "2019-09-08 03:48:16",
         "updated_at": "2019-09-08 03:48:16"
     },
     {
-        "id": 24,
+        "id": 23,
         "name": "Hafiz",
         "profileImage": "Hafiz",
         "created_at": "2019-09-08 03:48:16",
         "updated_at": "2019-09-08 03:48:16"
     },
     {
-        "id": 25,
+        "id": 24,
         "name": "Fadhil",
         "profileImage": "Fadhil",
         "created_at": "2019-09-08 03:48:17",
         "updated_at": "2019-09-08 03:48:17"
     },
     {
-        "id": 26,
+        "id": 25,
         "name": "Hilman",
         "profileImage": "Hilman",
         "created_at": "2019-09-08 03:48:17",
         "updated_at": "2019-09-08 03:48:17"
     },
     {
-        "id": 27,
+        "id": 26,
         "name": "Jassen",
         "profileImage": "Jassen",
         "created_at": "2019-09-08 03:48:17",
         "updated_at": "2019-09-08 03:48:17"
     },
     {
-        "id": 28,
+        "id": 27,
         "name": "Leo",
         "profileImage": "Leo",
         "created_at": "2019-09-08 03:48:53",
         "updated_at": "2019-09-08 03:48:53"
     },
     {
-        "id": 29,
+        "id": 28,
         "name": "FikriNur",
         "profileImage": "FikriNur",
         "created_at": "2019-09-08 03:44:09",
         "updated_at": "2019-09-08 12:28:31"
-    },
-    {
-        "id": 30,
-        "name": "Random",
-        "profileImage": "Random",
-        "created_at": "2019-09-08 12:19:24",
-        "updated_at": "2019-09-08 12:19:24"
     }
 ]

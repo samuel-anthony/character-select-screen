@@ -55,4 +55,11 @@ class CharacterSelectController extends Controller
       return ($param1+$param2)<0 ?  ($counter+$param1+$param2): ($param1+$param2);
     }
   }
+
+  public function getAllUser(){
+    return([
+      'count'=>count(profile::all()),
+      'allUser'=>profile::all()
+    ]);
+  }
 }

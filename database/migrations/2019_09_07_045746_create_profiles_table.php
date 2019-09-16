@@ -17,6 +17,7 @@ class CreateProfilesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('profileImage');
+            $table->string('isPicked');
             $table->timestamps();
         });
     }

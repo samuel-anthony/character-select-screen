@@ -9,6 +9,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}">
+        <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
         <style>
           .my-flex-container{
             border: 2px solid green;
@@ -20,22 +21,15 @@
         </style>
     </head>
     <body >
-        <div class="container flex-wrap my-flex-container mt-5">
-            <div class="d-flex flex-row justify-content-between">
-              <div class="my-flex-itemd d-flex flex-column-reverse">
-                <img src="{{ URL::to('/storage/fotoAldo.jpg') }}" width="300px" alt="">
-              </div>
-              <div class="my-flex-item my-flex-itemd d-flex flex-column justify-content-center">
-                <img src="{{ URL::to('/storage/vs.png') }}" width="100px" alt="">
-              </div>
-              <div class="my-flex-item">
-                <img src="{{ URL::to('/storage/fotoAldo.jpg') }}" width="300px" alt="">
-              </div>
-            </div>
+      <button type="button" name="button" onclick="resetDatabase()">resetDatabase</button>
+      <a href="/characterSelect"><button type="button" name="button" onclick="characterSelect()">characterSelect</button></a>
 
-            <div class="d-flex flex-row justify-content-center">
-
-            </div>
-        </div>
+      <script type="text/javascript">
+        function resetDatabase(){
+          $.ajax({
+            url:'/reset'
+          });
+        }
+      </script>
     </body>
 </html>

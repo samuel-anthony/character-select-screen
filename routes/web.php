@@ -11,14 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/characterSelect', 'CharacterSelectController@index');
+Route::get('/','MainPageController@index');
 
-Route::get('/pressKey/{param1}/{param2}','CharacterSelectController@pressKey');  
+Route::get('/reset','MainPageController@resetDatabase');
+
+Route::get('/characterSelect', 'CharacterSelectController@index');
+Route::get('/getAllUser', 'CharacterSelectController@getAllUser');
+
+Route::get('/pressKey/{param1}/{param2}','CharacterSelectController@pressKey');

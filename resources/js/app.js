@@ -5,7 +5,7 @@
  */
 
 require('./bootstrap');
-require('./keyboard.js')
+require('./keyboard.js');
 window.Vue = require('vue');
 
 /**
