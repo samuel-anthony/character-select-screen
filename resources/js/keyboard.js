@@ -56,6 +56,11 @@
       else if (!is_p2) {
         is_p2 = true;
       }
+      else if(is_p1 && is_p2){
+        $.ajax({
+          url:'/submitCharacter/'+p1+'/'+p2
+        });
+      }
     }
     else if (event.keyCode == '8') {
       //backspace
@@ -136,7 +141,12 @@ function randomPlayerTwo(){
     timer = setInterval(randomPlayerTwo,stopper);
   }
   else {
-    is_p2 = true;
-    stopper = 50;
+    if(p1 != p2){
+      is_p2 = true;
+      stopper = 50;
+    }
+    else{
+      timer = setInterval(randomPlayerTwo,stopper);
+    }
   }
 }

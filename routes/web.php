@@ -22,5 +22,5 @@ Route::get('/reset','MainPageController@resetDatabase');
 
 Route::get('/characterSelect', 'CharacterSelectController@index');
 Route::get('/getAllUser', 'CharacterSelectController@getAllUser');
-
+Route::get('/submitCharacter/{param1}/{param2}','CharacterSelectController@submit');
 Route::get('/pressKey/{param1}/{param2}','CharacterSelectController@pressKey');

@@ -49538,6 +49538,10 @@ $(document).keydown(function (event) {
       is_p1 = true;
     } else if (!is_p2) {
       is_p2 = true;
+    } else if (is_p1 && is_p2) {
+      $.ajax({
+        url: '/submitCharacter/' + p1 + '/' + p2
+      });
     }
   } else if (event.keyCode == '8') {
     //backspace
@@ -49561,8 +49565,6 @@ function movePlayerOne(val1) {
     url: '/pressKey/' + p1 + '/' + val1,
     success: function success(data) {
       p1 = data.newValue;
-      $("#p1Pic").attr("src", data.playerImage);
-      $("#p1Name").html(data.playerName);
       hoverCharacterPointer();
     }
   });
@@ -49573,8 +49575,6 @@ function movePlayerTwo(val1) {
     url: '/pressKey/' + p2 + '/' + val1,
     success: function success(data) {
       p2 = data.newValue;
-      $("#p2Pic").attr("src", data.playerImage);
-      $("#p2Name").html(data.playerName);
       hoverCharacterPointer();
     }
   });
@@ -49621,8 +49621,12 @@ function randomPlayerTwo() {
   if (stopper < 300) {
     timer = setInterval(randomPlayerTwo, stopper);
   } else {
-    is_p2 = true;
-    stopper = 50;
+    if (p1 != p2) {
+      is_p2 = true;
+      stopper = 50;
+    } else {
+      timer = setInterval(randomPlayerTwo, stopper);
+    }
   }
 }
 

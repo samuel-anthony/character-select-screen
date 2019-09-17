@@ -10,10 +10,6 @@ class CharacterSelectController extends Controller
 {
   public function index()
   {
-      //$allUser = profile::all();
-      $jsonString = file_get_contents(base_path('storage/dataAnak.json'));
-      $allUser = json_decode($jsonString, true);
-
       //$newJsonString = json_encode($allUser, JSON_PRETTY_PRINT);
 
       //file_put_contents(base_path('storage/dataAnak.json'), stripslashes($newJsonString));
@@ -23,25 +19,24 @@ class CharacterSelectController extends Controller
         $image = Image::make(public_path("storage/small/{$allUser[$a]->profileImage}.jpg"))->fit(300,300);
         $image->save();
       }*/
+      $allUser = profile::all();
       return view('characterSelect',[
         'allUser' => $allUser,
       ]);
   }
   public function pressKey($param1,$param2){
     //param1 = pointer, param2 = incremental
-    $jsonString = file_get_contents(base_path('storage/dataAnak.json'));
-    $allUser = json_decode($jsonString, true);
-    $validatedParam = $this->validation($param1,$param2,$allUser);
-    $user =$allUser[$validatedParam];
+    $validatedParam = $this->validation($param1,$param2);
+    $user =profile::find($validatedParam);
     return ([
-      'playerImage' => "/storage/big/".$user['profileImage'].".jpg",
-      'playerName' => $user['name'],
+      'playerImage' => "/storage/big/".$user->profileImage.".jpg",
+      'playerName' => $user->name,
       'newValue' => $validatedParam
     ]);
   }
 
-  public function validation($param1,$param2,$allUser){
-    $counter = count($allUser);
+  public function validation($param1,$param2){
+    $counter = count(profile::all());
     if($param2 == 1){
       return $param1%10 == 9 ? (floor($param1/10)*10):($param1+$param2);
     }
@@ -61,5 +56,15 @@ class CharacterSelectController extends Controller
       'count'=>count(profile::all()),
       'allUser'=>profile::all()
     ]);
+  }
+
+  public function submit($param1,$param2){
+    $user =profile::find($param1+1);
+    $user->isPicked = 'Y';
+    $user->save();
+    $user =profile::find($param2+1);
+    $user->isPicked = 'Y';
+    $user->save();
+    $this->index();
   }
 }
