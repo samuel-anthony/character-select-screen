@@ -49485,12 +49485,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var p1 = 0,
-    p2 = 0,
+var p1,
+    p2,
     is_p1 = false,
     is_p2 = false,
     allUserCount,
-    allUser;
+    allUser,
+    pickedUser;
 var stopper = 50,
     timer;
 $(document).ready(function () {
@@ -49499,40 +49500,52 @@ $(document).ready(function () {
     success: function success(data) {
       allUserCount = data.count;
       allUser = data.allUser;
-      hoverCharacterPointer();
+      pickedUser = data.pickedUser;
+      markThePickedUser();
+      p1 = 0;
+      p2 = 0;
     }
   });
 });
 $(document).keydown(function (event) {
-  if (event.keyCode == '37') {
+  /*if(event.keyCode == '37'){
     //left
-    if (!is_p1) {
+    if(!is_p1){
       movePlayerOne(-1);
-    } else if (!is_p2) {
+    }
+    else if (!is_p2) {
       movePlayerTwo(-1);
     }
-  } else if (event.keyCode == '38') {
+  }
+  else if (event.keyCode == '38') {
     //up
-    if (!is_p1) {
+    if(!is_p1){
       movePlayerOne(-10);
-    } else if (!is_p2) {
+    }
+    else if (!is_p2) {
       movePlayerTwo(-10);
     }
-  } else if (event.keyCode == '39') {
+  }
+  else if (event.keyCode == '39') {
     //right
-    if (!is_p1) {
+    if(!is_p1){
       movePlayerOne(1);
-    } else if (!is_p2) {
+    }
+    else if (!is_p2) {
       movePlayerTwo(1);
     }
-  } else if (event.keyCode == '40') {
+  }
+  else if (event.keyCode == '40') {
     //down
-    if (!is_p1) {
+    if(!is_p1){
       movePlayerOne(10);
-    } else if (!is_p2) {
+    }
+    else if (!is_p2) {
       movePlayerTwo(10);
     }
-  } else if (event.keyCode == '13') {
+  }
+  else*/
+  if (event.keyCode == '13') {
     //enter
     if (!is_p1) {
       is_p1 = true;
@@ -49540,7 +49553,7 @@ $(document).keydown(function (event) {
       is_p2 = true;
     } else if (is_p1 && is_p2) {
       $.ajax({
-        url: '/submitCharacter/' + p1 + '/' + p2
+        url: '/submitCharacter/' + allUser[p1].id + '/' + allUser[p2].id
       });
     }
   } else if (event.keyCode == '8') {
@@ -49562,7 +49575,7 @@ $(document).keydown(function (event) {
 
 function movePlayerOne(val1) {
   $.ajax({
-    url: '/pressKey/' + p1 + '/' + val1,
+    url: '/pressKey/' + allUser[p1].id + '/' + allUser[p2].id,
     success: function success(data) {
       p1 = data.newValue;
       hoverCharacterPointer();
@@ -49583,22 +49596,23 @@ function movePlayerTwo(val1) {
 function hoverCharacterPointer() {
   for (var c = 0; c < allUserCount; c++) {
     $('#' + c).removeClass('selectedRed');
-    $('#' + p1).addClass('selectedRed');
-    $('#' + p2).addClass('selectedRed');
+  }
 
-    if (!is_p1) {
-      $("#p1Pic").attr("src", "/storage/big/" + allUser[p1].profileImage + ".jpg");
-      $("#p1Name").html(allUser[p1].name);
-    } else if (!is_p2) {
-      $("#p2Pic").attr("src", "/storage/big/" + allUser[p2].profileImage + ".jpg");
-      $("#p2Name").html(allUser[p2].name);
-    }
+  $('#' + (allUser[p1].id - 1)).addClass('selectedRed');
+  $('#' + (allUser[p2].id - 1)).addClass('selectedRed');
+
+  if (!is_p1) {
+    $("#p1Pic").attr("src", "/storage/big/" + allUser[p1].profileImage + ".jpg");
+    $("#p1Name").html(allUser[p1].name);
+  } else if (!is_p2) {
+    $("#p2Pic").attr("src", "/storage/big/" + allUser[p2].profileImage + ".jpg");
+    $("#p2Name").html(allUser[p2].name);
   }
 }
 
 function randomPlayerOne() {
   stopper += 10;
-  var rand = Math.floor(Math.random() * (allUserCount - 1));
+  var rand = Math.floor(Math.random() * allUser.length);
   p1 = rand;
   hoverCharacterPointer();
   clearInterval(timer);
@@ -49613,7 +49627,7 @@ function randomPlayerOne() {
 
 function randomPlayerTwo() {
   stopper += 10;
-  var rand = Math.floor(Math.random() * (allUserCount - 1));
+  var rand = Math.floor(Math.random() * allUser.length);
   p2 = rand;
   hoverCharacterPointer();
   clearInterval(timer);
@@ -49627,6 +49641,12 @@ function randomPlayerTwo() {
     } else {
       timer = setInterval(randomPlayerTwo, stopper);
     }
+  }
+}
+
+function markThePickedUser() {
+  for (var c = 0; c < pickedUser.length; c++) {
+    $('#' + (pickedUser[c].id - 1)).addClass('pickedUser');
   }
 }
 
