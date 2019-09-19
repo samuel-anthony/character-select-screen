@@ -35,6 +35,9 @@
           .selectedRed {
             background-color: red;
           }
+          .pickedUser {
+            background-color: green;
+          }
         </style>
     </head>
     <body >

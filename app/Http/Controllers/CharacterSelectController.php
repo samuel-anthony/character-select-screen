@@ -19,6 +19,9 @@ class CharacterSelectController extends Controller
         $image = Image::make(public_path("storage/small/{$allUser[$a]->profileImage}.jpg"))->fit(300,300);
         $image->save();
       }*/
+      if(profile::all()->count()==0){
+        app('App\Http\Controllers\MainPageController')->resetDatabase();
+      }
       $allUser = profile::all();
       return view('characterSelect',[
         'allUser' => $allUser,
@@ -53,16 +56,17 @@ class CharacterSelectController extends Controller
 
   public function getAllUser(){
     return([
-      'count'=>count(profile::all()),
-      'allUser'=>profile::all()
+      'count'=>profile::all()->count(),
+      'allUser'=>profile::where('isPicked','N')->get(),
+      'pickedUser'=>profile::where('isPicked','Y')->get()
     ]);
   }
 
   public function submit($param1,$param2){
-    $user =profile::find($param1+1);
+    $user =profile::find($param1);
     $user->isPicked = 'Y';
     $user->save();
-    $user =profile::find($param2+1);
+    $user =profile::find($param2);
     $user->isPicked = 'Y';
     $user->save();
     $this->index();
