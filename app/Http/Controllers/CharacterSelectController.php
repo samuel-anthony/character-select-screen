@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\profile;
+use App\game;
 use Intervention\Image\Facades\Image;
 
 class CharacterSelectController extends Controller
@@ -13,12 +14,7 @@ class CharacterSelectController extends Controller
       //$newJsonString = json_encode($allUser, JSON_PRETTY_PRINT);
 
       //file_put_contents(base_path('storage/dataAnak.json'), stripslashes($newJsonString));
-      /*for($a = 0; $a < count($allUser) ; $a++){
-        $image = Image::make(public_path("storage/big/{$allUser[$a]->profileImage}.jpg"))->fit(300,500);
-        $image->save();
-        $image = Image::make(public_path("storage/small/{$allUser[$a]->profileImage}.jpg"))->fit(300,300);
-        $image->save();
-      }*/
+
       if(profile::all()->count()==0){
         app('App\Http\Controllers\MainPageController')->resetDatabase();
       }
@@ -58,7 +54,9 @@ class CharacterSelectController extends Controller
     return([
       'count'=>profile::all()->count(),
       'allUser'=>profile::where('isPicked','N')->get(),
-      'pickedUser'=>profile::where('isPicked','Y')->get()
+      'pickedUser'=>profile::where('isPicked','Y')->get(),
+      'allGame'=>game::where('isPicked','N')->get(),
+      'pickedGame'=>game::where('isPicked','Y')->get()
     ]);
   }
 
