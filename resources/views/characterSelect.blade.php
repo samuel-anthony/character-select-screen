@@ -11,7 +11,14 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}">
         <style>
-
+        body {
+            background: url('/storage/bg1.png') no-repeat;
+            background-attachment: fixed;
+            background-position: center center;
+            background-size: cover;
+            font-family: myFirstFont;
+            color: white;
+        }
           @import url('https://fonts.googleapis.com/css?family=Bangers&display=swap');
           .my-flex-container{
             border: 2px solid green;
@@ -43,6 +50,8 @@
           .pickedUser {
             background-color: green;
           }
+
+
         </style>
     </head>
     <body >
