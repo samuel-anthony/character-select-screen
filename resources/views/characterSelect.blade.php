@@ -31,7 +31,12 @@
             right: 0;
             text-align: center;
           }
-
+          .game{
+            font-family: Bangers;
+            font-size: 50px;
+            text-shadow: 0 0 3px #FFFFFF, 0 0 5px #FFFFFF;
+            text-align: center;
+          }
           .selectedRed {
             background-color: red;
           }
@@ -51,8 +56,8 @@
               </div>
               <div class="d-flex flex-column justify-content-center">
                 <img src="{{ URL::to('/storage/vs.png') }}" width="200px" alt="">
-                <div class="user-name" id="game">
-                </div>
+
+                <div id="game" class="game"></div>
               </div>
               <div class="my-flex-item" id="p2Gen">
                 <img src="/storage/big/{{$allUser[0]['profileImage']}}.jpg" width="300px" alt="" id="p2Pic">

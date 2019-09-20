@@ -53,7 +53,8 @@
         movePlayerTwo(10);
       }
     }
-    else*/ if (event.keyCode == '13') {
+    else*/
+    if (event.keyCode == '13') {
       //enter
       if(!is_p1){
         is_p1 = true;
@@ -158,7 +159,7 @@ function randomPlayerTwo(){
 function randomGame(){
   stopper += 10;
   var rand = Math.floor(Math.random()*(allGame.length));
-  $('#game').html(allGame[rand]);
+  $('#game').html(allGame[rand].name);
   clearInterval(timer);
   if(stopper<300){
     timer = setInterval(randomGame,stopper);

@@ -49491,7 +49491,9 @@ var p1,
     is_p2 = false,
     allUserCount,
     allUser,
-    pickedUser;
+    pickedUser,
+    pickedGame,
+    allGame;
 var stopper = 50,
     timer;
 $(document).ready(function () {
@@ -49501,6 +49503,8 @@ $(document).ready(function () {
       allUserCount = data.count;
       allUser = data.allUser;
       pickedUser = data.pickedUser;
+      allGame = data.allGame;
+      pickedGame = data.pickedUser;
       markThePickedUser();
       p1 = 0;
       p2 = 0;
@@ -49552,9 +49556,7 @@ $(document).keydown(function (event) {
     } else if (!is_p2) {
       is_p2 = true;
     } else if (is_p1 && is_p2) {
-      $.ajax({
-        url: '/submitCharacter/' + allUser[p1].id + '/' + allUser[p2].id
-      });
+      timer = setInterval(randomGame, stopper);
     }
   } else if (event.keyCode == '8') {
     //backspace
@@ -49644,6 +49646,21 @@ function randomPlayerTwo() {
   }
 }
 
+function randomGame() {
+  stopper += 10;
+  var rand = Math.floor(Math.random() * allGame.length);
+  $('#game').html(allGame[rand].name);
+  clearInterval(timer);
+
+  if (stopper < 300) {
+    timer = setInterval(randomGame, stopper);
+  } else {
+    $.ajax({
+      url: '/submitCharacter/' + allUser[p1].id + '/' + allUser[p2].id + '/' + allGame[rand].id
+    });
+  }
+}
+
 function markThePickedUser() {
   for (var c = 0; c < pickedUser.length; c++) {
     $('#' + (pickedUser[c].id - 1)).addClass('pickedUser');
@@ -49670,8 +49687,8 @@ function markThePickedUser() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\project\laravel\farewellProject\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\project\laravel\farewellProject\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\pribadi\farewellProject\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\pribadi\farewellProject\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

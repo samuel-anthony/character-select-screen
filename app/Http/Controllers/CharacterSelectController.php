@@ -60,13 +60,16 @@ class CharacterSelectController extends Controller
     ]);
   }
 
-  public function submit($param1,$param2){
+  public function submit($param1,$param2,$param3){
     $user =profile::find($param1);
     $user->isPicked = 'Y';
     $user->save();
     $user =profile::find($param2);
     $user->isPicked = 'Y';
     $user->save();
+    $game = game::find($param3);
+    $game->isPicked = 'Y';
+    $game->save();
     $this->index();
   }
 }

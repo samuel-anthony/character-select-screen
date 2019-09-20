@@ -20,10 +20,10 @@ class mainPageController extends Controller
       $allUser = json_decode($jsonString, true);
       //resave picture
       for($a = 0; $a < count($allUser) ; $a++){
-        $image = Image::make(public_path("storage/big/{$allUser[$a]->profileImage}.jpg"))->fit(300,500);
+        /*$image = Image::make(public_path("storage/big/{$allUser[$a]->profileImage}.jpg"))->fit(300,500);
         $image->save();
         $image = Image::make(public_path("storage/small/{$allUser[$a]->profileImage}.jpg"))->fit(300,300);
-        $image->save();
+        $image->save();*/
         //save to db
         $player = new profile();
         $player->name = $allUser[$a]['name'];
@@ -42,7 +42,6 @@ class mainPageController extends Controller
     public function insertGame(){
       $jsonString = file_get_contents(base_path('storage/listGame.json'));
       $allGame = json_decode($jsonString, true);
-
       for($a = 0; $a < count($allGame) ; $a++){
         $game = new game();
         $game->name = $allGame[$a]['name'];
